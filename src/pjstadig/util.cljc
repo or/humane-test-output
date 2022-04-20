@@ -56,13 +56,14 @@
                                   (do
                                     (p/rprint "    diff:")
                                     (if a
-                                      (do (p/rprint " - ")
+                                      (do (p/rprint "\033[31m - ")
                                           (pp/pprint a *out*)
-                                          (p/rprint "          + "))
-                                      (p/rprint " + "))
+                                          (p/rprint "\033[32m          + "))
+                                      (p/rprint "\033[32m + "))
                                     (when b
                                       (pp/pprint b *out*))
-                                    (p/clear))))
+                                    (p/clear)
+                                    (print "\033[0m"))))
                               (print-expected actual))))))
 
 (defn define-fail-report []
